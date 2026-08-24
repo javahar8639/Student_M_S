@@ -102,6 +102,19 @@ export const ClockIcon = (p) => (
   </svg>
 );
 
+export const AlertIcon = (p) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" {...base} {...p}>
+    <path d="M12 3.5l10 17.5H2z" />
+    <path d="M12 10v4M12 17.5h.01" />
+  </svg>
+);
+
+export const SendIcon = (p) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" {...base} {...p}>
+    <path d="M21 3L10.5 13.5M21 3l-6.5 18-4-8-8-4z" />
+  </svg>
+);
+
 export const BellDotIcon = (p) => (
   <svg width="18" height="18" viewBox="0 0 24 24" {...base} {...p}>
     <path d="M6 9a6 6 0 1112 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z" />

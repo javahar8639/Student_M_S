@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { profileApi } from '../api/profile.js';
 import { useFetch } from '../hooks/useFetch.js';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -125,10 +126,13 @@ export default function Profile() {
             </p>
             <p className="text-sm text-ink-faint">{profile.location}</p>
           </div>
-          <div className="ml-auto flex shrink-0 flex-col items-center rounded-lg bg-paper px-5 py-3 text-center">
+          <Link
+            to="/courses?status=completed"
+            className="ml-auto flex shrink-0 flex-col items-center rounded-lg bg-paper px-5 py-3 text-center transition-colors duration-150 hover:bg-accent-light"
+          >
             <span className="text-xl font-semibold text-ink">{profile.completedCourses}</span>
             <span className="text-xs text-ink-soft">Completed Courses</span>
-          </div>
+          </Link>
         </div>
       </Card>
 

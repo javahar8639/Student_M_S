@@ -15,14 +15,21 @@ export const getCalendarEvents = asyncHandler(async (req, res) => {
     [studentId]
   );
 
-  const events = result.rows.map((row) => ({
-    id: row.id,
-    title: row.title,
-    date: row.due_date,
-    courseTitle: row.course_title,
-    type: 'assignment',
-    status: row.marks !== null ? 'graded' : row.submission_status === 'submitted' ? 'submitted' : 'pending',
-  }));
+  const events = result.rows.map((row) => {
+    let status = 'upcoming';
+    if (row.marks !== null) status = 'graded';
+    else if (row.submission_status === 'submitted') status = 'submitted';
+    else if (new Date(row.due_date) < new Date()) status = 'overdue';
+
+    return {
+      id: row.id,
+      title: row.title,
+      date: row.due_date,
+      courseTitle: row.course_title,
+      type: 'assignment',
+      status,
+    };
+  });
 
   res.json({ events });
 });

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { coursesApi } from '../api/courses.js';
 import { useFetch } from '../hooks/useFetch.js';
 import Card from '../components/ui/Card.jsx';
@@ -21,10 +21,20 @@ const STATUS_FILTERS = [
 const CATEGORY_FILTERS = ['All', 'AI', 'Design', 'Coding', 'Business', 'Marketing'];
 
 export default function Courses() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialStatus = STATUS_FILTERS.some((f) => f.value === searchParams.get('status'))
+    ? searchParams.get('status')
+    : 'All';
+
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
-  const [status, setStatus] = useState('All');
+  const [status, setStatus] = useState(initialStatus);
   const [category, setCategory] = useState('All');
+
+  useEffect(() => {
+    if (searchParams.toString()) setSearchParams({}, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => setDebouncedSearch(search), 250);
