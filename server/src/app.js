@@ -14,7 +14,10 @@ import { notFoundHandler, errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
 
-const allowedOrigins = [process.env.FRONTEND_URL, 'http://localhost:5173'].filter(Boolean);
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.NODE_ENV !== 'production' ? 'http://localhost:5175' : null,
+].filter(Boolean);
 
 app.use(
   cors({
