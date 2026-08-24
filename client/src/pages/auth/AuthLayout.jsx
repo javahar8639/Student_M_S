@@ -3,7 +3,7 @@ export default function AuthLayout({ eyebrow, title, subtitle, children, footer 
     <div className="flex min-h-screen items-center justify-center bg-paper px-4 py-10">
       <div className="w-full max-w-md page-transition">
         <div className="mb-8 text-center">
-          <p className="font-serif text-xl font-semibold tracking-tight text-ink">Student MS</p>
+          <p className="font-serif text-xl font-semibold tracking-tight text-ink">EduTrack</p>
           {eyebrow && <p className="mt-1 text-xs font-medium uppercase tracking-wide text-ink-faint">{eyebrow}</p>}
         </div>
 

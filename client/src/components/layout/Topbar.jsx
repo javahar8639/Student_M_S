@@ -45,7 +45,7 @@ export default function Topbar() {
         {mobileNavOpen ? <CloseIcon /> : <MenuIcon />}
       </button>
 
-      <span className="font-serif text-base font-semibold text-ink lg:hidden">Student MS</span>
+      <span className="font-serif text-base font-semibold text-ink lg:hidden">EduTrack</span>
 
       <div className="hidden flex-1 lg:block">
         <GlobalSearch />
