@@ -19,8 +19,13 @@ const STATUS_CONFIG = {
 };
 const STATUS_ORDER = ['upcoming', 'overdue', 'submitted', 'graded'];
 
+// Builds a Y-M-D key from local date parts (not UTC) so "today" and event
+// due dates line up with the viewer's own calendar day, not toISOString's UTC day.
 function toKey(date) {
-  return date.toISOString().slice(0, 10);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }
 
 export default function Calendar() {
@@ -35,7 +40,7 @@ export default function Calendar() {
   const eventsByDay = useMemo(() => {
     const map = new Map();
     for (const event of data?.events || []) {
-      const key = new Date(event.date).toISOString().slice(0, 10);
+      const key = toKey(new Date(event.date));
       if (!map.has(key)) map.set(key, []);
       map.get(key).push(event);
     }
