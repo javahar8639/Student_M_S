@@ -11,6 +11,14 @@ export function notFoundHandler(req, res) {
 
 // eslint-disable-next-line no-unused-vars
 export function errorHandler(err, req, res, next) {
+  if (err.name === 'MulterError') {
+    const messages = {
+      LIMIT_FILE_SIZE: 'File is too large. Maximum size is 10MB.',
+      LIMIT_UNEXPECTED_FILE: 'Unsupported file type.',
+    };
+    return res.status(400).json({ message: messages[err.code] || 'Unable to upload the file.' });
+  }
+
   const statusCode = err.statusCode || 500;
   const message = statusCode === 500 ? 'Something went wrong. Please try again.' : err.message;
 

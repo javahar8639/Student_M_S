@@ -109,6 +109,19 @@ export const BellDotIcon = (p) => (
   </svg>
 );
 
+export const PaperclipIcon = (p) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" {...base} {...p}>
+    <path d="M20.5 12.5l-8.4 8.4a5 5 0 01-7.1-7.1l9.2-9.2a3.5 3.5 0 014.9 4.9l-9.2 9.2a2 2 0 01-2.8-2.8l8.1-8.1" />
+  </svg>
+);
+
+export const FileIcon = (p) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" {...base} {...p}>
+    <path d="M6 2.5h8l4.5 4.5V21a1 1 0 01-1 1H6a1 1 0 01-1-1V3.5a1 1 0 011-1z" />
+    <path d="M14 2.5V7a1 1 0 001 1h4.5" />
+  </svg>
+);
+
 export const CopyIcon = (p) => (
   <svg width="16" height="16" viewBox="0 0 24 24" {...base} {...p}>
     <rect x="9" y="9" width="12" height="12" rx="2" />

@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 
+import { UPLOAD_DIR } from './middleware/upload.js';
 import authRoutes from './routes/auth.routes.js';
 import profileRoutes from './routes/profile.routes.js';
 import coursesRoutes from './routes/courses.routes.js';
@@ -33,6 +34,7 @@ app.use(
 app.use(express.json());
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
+app.use('/uploads', express.static(UPLOAD_DIR));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);

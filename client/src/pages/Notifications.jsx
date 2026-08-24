@@ -43,7 +43,12 @@ export default function Notifications() {
       ) : (
         <Card className="divide-y divide-border-soft">
           {notifications.map((n) => (
-            <div key={n.id} className={`flex items-start gap-3.5 px-5 py-4 transition-colors ${!n.is_read ? 'bg-accent-light/30' : ''}`}>
+            <div
+              key={n.id}
+              className={`flex items-start gap-3.5 px-5 py-4 transition-colors duration-150 ${
+                !n.is_read ? 'bg-accent-light/30 hover:bg-accent-light/50' : 'hover:bg-black/[0.025]'
+              }`}
+            >
               <div className={`mt-0.5 shrink-0 ${TYPE_ICON_COLOR[n.type] || 'text-ink-faint'}`}>
                 <NotificationsIcon width={18} height={18} />
               </div>

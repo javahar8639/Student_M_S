@@ -72,6 +72,8 @@ CREATE TABLE IF NOT EXISTS submissions (
   assignment_id     INTEGER NOT NULL REFERENCES assignments(id) ON DELETE CASCADE,
   student_id        INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   submission_text   TEXT,
+  attachment_name   TEXT,
+  attachment_url    TEXT,
   status            VARCHAR(20) NOT NULL DEFAULT 'pending',
   submitted_at      TIMESTAMPTZ,
   marks             INTEGER,
@@ -108,3 +110,7 @@ CREATE INDEX IF NOT EXISTS idx_submissions_student ON submissions(student_id);
 CREATE INDEX IF NOT EXISTS idx_submissions_assignment ON submissions(assignment_id);
 CREATE INDEX IF NOT EXISTS idx_notifications_student ON notifications(student_id);
 CREATE INDEX IF NOT EXISTS idx_reset_tokens_user ON password_reset_tokens(user_id);
+
+-- Additive, idempotent changes for existing databases (safe to re-run).
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS attachment_name TEXT;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS attachment_url TEXT;

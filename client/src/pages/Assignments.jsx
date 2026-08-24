@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { assignmentsApi } from '../api/assignments.js';
 import { useFetch } from '../hooks/useFetch.js';
 import Card from '../components/ui/Card.jsx';
@@ -21,9 +22,18 @@ const FILTERS = [
 export default function Assignments() {
   const [filter, setFilter] = useState('All');
   const [selectedId, setSelectedId] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
   const { data, isLoading, error, refetch } = useFetch(() => assignmentsApi.list({ status: filter }), [filter]);
 
   const selected = data?.assignments.find((a) => a.id === selectedId) || null;
+
+  useEffect(() => {
+    const deepLinkId = searchParams.get('assignmentId');
+    if (deepLinkId && data?.assignments.some((a) => String(a.id) === deepLinkId)) {
+      setSelectedId(Number(deepLinkId));
+      setSearchParams({}, { replace: true });
+    }
+  }, [data, searchParams, setSearchParams]);
 
   function handleSubmitted() {
     setSelectedId(null);

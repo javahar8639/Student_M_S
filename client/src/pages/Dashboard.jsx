@@ -6,7 +6,6 @@ import { greeting, formatDate, timeAgo, daysUntil, statusLabel } from '../lib/fo
 import Card from '../components/ui/Card.jsx';
 import Badge from '../components/ui/Badge.jsx';
 import ProgressBar from '../components/ui/ProgressBar.jsx';
-import Button from '../components/ui/Button.jsx';
 import EmptyState from '../components/ui/EmptyState.jsx';
 import ErrorState from '../components/ui/ErrorState.jsx';
 import { Skeleton, SkeletonCard, SkeletonRow } from '../components/ui/Skeleton.jsx';
@@ -191,16 +190,18 @@ function UpcomingTaskRow({ task }) {
   const dueCopy = days < 0 ? `${Math.abs(days)}d overdue` : days === 0 ? 'Due today' : `Due in ${days}d`;
 
   return (
-    <Card className="flex items-center gap-3 p-4">
-      <ClockIcon width={18} height={18} className="shrink-0 text-ink-faint" />
-      <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-medium text-ink">{task.title}</p>
-        <p className="truncate text-xs text-ink-faint">{task.courseTitle} · {formatDate(task.dueDate)}</p>
-      </div>
-      <div className="flex shrink-0 flex-col items-end gap-1">
-        <Badge variant={urgencyVariant}>{statusLabel(task.urgency)}</Badge>
-        <span className="text-xs text-ink-faint">{dueCopy}</span>
-      </div>
-    </Card>
+    <Link to={`/assignments?assignmentId=${task.id}`} className="block">
+      <Card hover className="flex items-center gap-3 p-4">
+        <ClockIcon width={18} height={18} className="shrink-0 text-ink-faint" />
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-medium text-ink">{task.title}</p>
+          <p className="truncate text-xs text-ink-faint">{task.courseTitle} · {formatDate(task.dueDate)}</p>
+        </div>
+        <div className="flex shrink-0 flex-col items-end gap-1">
+          <Badge variant={urgencyVariant}>{statusLabel(task.urgency)}</Badge>
+          <span className="text-xs text-ink-faint">{dueCopy}</span>
+        </div>
+      </Card>
+    </Link>
   );
 }

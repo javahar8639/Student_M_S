@@ -23,6 +23,8 @@ function toDto(row) {
       ? {
           id: row.submission_id,
           text: row.submission_text,
+          attachmentName: row.attachment_name,
+          attachmentUrl: row.attachment_url,
           submittedAt: row.submitted_at,
           marks: row.marks,
           feedback: row.feedback,
@@ -37,8 +39,8 @@ export const listAssignments = asyncHandler(async (req, res) => {
 
   const result = await query(
     `SELECT a.*, c.title AS course_title,
-       s.id AS submission_id, s.submission_text, s.status AS submission_status,
-       s.submitted_at, s.marks, s.feedback
+       s.id AS submission_id, s.submission_text, s.attachment_name, s.attachment_url,
+       s.status AS submission_status, s.submitted_at, s.marks, s.feedback
      FROM assignments a
      JOIN courses c ON c.id = a.course_id
      LEFT JOIN submissions s ON s.assignment_id = a.id AND s.student_id = $1
@@ -62,8 +64,8 @@ export const getAssignmentDetails = asyncHandler(async (req, res) => {
 
   const result = await query(
     `SELECT a.*, c.title AS course_title,
-       s.id AS submission_id, s.submission_text, s.status AS submission_status,
-       s.submitted_at, s.marks, s.feedback
+       s.id AS submission_id, s.submission_text, s.attachment_name, s.attachment_url,
+       s.status AS submission_status, s.submitted_at, s.marks, s.feedback
      FROM assignments a
      JOIN courses c ON c.id = a.course_id
      LEFT JOIN submissions s ON s.assignment_id = a.id AND s.student_id = $2

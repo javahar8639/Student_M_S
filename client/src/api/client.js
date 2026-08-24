@@ -1,4 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+export const API_ORIGIN = API_URL.replace(/\/api\/?$/, '');
 const TOKEN_KEY = 'student_ms_token';
 
 export function getToken() {
@@ -23,7 +24,7 @@ class ApiRequestError extends Error {
   }
 }
 
-async function request(path, { method = 'GET', body, params } = {}) {
+async function request(path, { method = 'GET', body, params, isFormData = false } = {}) {
   const url = new URL(`${API_URL}${path}`);
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
@@ -33,7 +34,8 @@ async function request(path, { method = 'GET', body, params } = {}) {
     });
   }
 
-  const headers = { 'Content-Type': 'application/json' };
+  const headers = {};
+  if (!isFormData) headers['Content-Type'] = 'application/json';
   const token = getToken();
   if (token) headers.Authorization = `Bearer ${token}`;
 
@@ -42,7 +44,7 @@ async function request(path, { method = 'GET', body, params } = {}) {
     response = await fetch(url, {
       method,
       headers,
-      body: body ? JSON.stringify(body) : undefined,
+      body: isFormData ? body : body ? JSON.stringify(body) : undefined,
     });
   } catch (err) {
     throw new ApiRequestError('Unable to reach the server. Please check your connection.', 0);
@@ -61,6 +63,7 @@ async function request(path, { method = 'GET', body, params } = {}) {
 export const api = {
   get: (path, params) => request(path, { method: 'GET', params }),
   post: (path, body) => request(path, { method: 'POST', body }),
+  postForm: (path, formData) => request(path, { method: 'POST', body: formData, isFormData: true }),
   put: (path, body) => request(path, { method: 'PUT', body }),
   delete: (path) => request(path, { method: 'DELETE' }),
 };
