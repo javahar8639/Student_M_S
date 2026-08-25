@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { CopyIcon, CheckCircleIcon } from '../../components/icons.jsx';
 
-const DEMO_EMAIL = 'javaharreddy20@gmail.com';
-const DEMO_PASSWORD = 'edutrack123';
+const DEMO_EMAIL = 'aarav.mehta@example.com';
+const DEMO_PASSWORD = 'NovaLearn123!';
 
 export default function DemoAccountPanel({ onUseDemo }) {
   const [copied, setCopied] = useState(false);

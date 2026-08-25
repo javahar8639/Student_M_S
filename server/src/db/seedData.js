@@ -2,13 +2,13 @@
 // can be edited without touching the insertion code.
 
 export const demoStudent = {
-  name: 'Javahar',
-  email: 'javaharreddy20@gmail.com',
-  password: 'edutrack123',
+  name: 'Aarav Mehta',
+  email: 'aarav.mehta@example.com',
+  password: 'NovaLearn123!',
   program: 'B.Tech Computer Science',
-  year: 'Graduate',
+  year: '3rd Year',
   location: 'Bengaluru, India',
-  bio: 'B.Tech Computer Science graduate passionate about frontend engineering and applied AI. I like building clean, usable products.',
+  bio: 'Third-year CS student passionate about frontend engineering and applied AI. I like building clean, usable products.',
   interests: ['Frontend Engineering', 'Artificial Intelligence', 'Product Design'],
   learning_goals: 'Become a well-rounded full-stack engineer and ship a polished portfolio project every quarter.',
   profile_image: null,
@@ -203,7 +203,7 @@ export const notifications = [
   },
   {
     title: 'Welcome to Student MS',
-    message: 'Welcome, Javahar! Explore your courses and pick up where you left off.',
+    message: 'Welcome, Aarav! Explore your courses and pick up where you left off.',
     type: 'general',
     daysAgo: 30,
     isRead: true,
