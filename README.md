@@ -2,6 +2,9 @@
 
 **EduTrack** is a full-stack student management web app built with **React, Express, and PostgreSQL**. It gives a student a single dashboard to track courses, lessons, assignments, grades, and notifications — with every action persisted to a real database instead of mock data.
 
+🔗 **GitHub:** [github.com/javahar8639/Student_M_S](https://github.com/javahar8639/Student_M_S)
+🚀 **Live Demo:** [student-pdh1.onrender.com](https://student-pdh1.onrender.com)
+
 > Built as a full-stack experience with a focus on **real data persistence, secure authentication, and a calm, premium UI**.
 
 ---
