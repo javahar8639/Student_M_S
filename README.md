@@ -141,8 +141,8 @@ No secrets are committed — `.env` is gitignored in both `client/` and `server/
 ## Demo Credentials
 
 ```
-Email:    aarav.mehta@example.com
-Password: NovaLearn123!
+Email:    javaharreddy20@gmail.com
+Password: edutrack123
 ```
 The login page also has a "Demo Account" panel with a **Copy Credentials** button.
 The demo student comes pre-seeded with 3 courses (varying progress), 8 assignments in
